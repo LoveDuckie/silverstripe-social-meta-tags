@@ -2,6 +2,8 @@
 
 A handy SilverStripe module for conveniently integrating metadata compatible with sharing previews on social media platforms.
 
+![image](https://user-images.githubusercontent.com/692378/160485577-649faada-e756-45f7-b09e-1b3c2210c92f.png)
+
 ## Requirements
 
 * SilverStripe ^4.0
