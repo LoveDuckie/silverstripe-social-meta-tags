@@ -1,12 +1,16 @@
 {
-    "name": "silverstripe-module/skeleton",
+    "name": "loveduckie/silverstripe-social-meta-tags",
     "description": "A skeleton for SilverStripe modules.",
     "type": "silverstripe-vendormodule",
-    "keywords": [
-        "silverstripe",
-        "CMS"
-    ],
+    "keywords": ["silverstripe", "cms", "silverstripe-4", "social-meta-tags", "social-share"],
+    "authors": [{
+        "name": "Luc Shelton",
+        "email": "lucshelton@gmail.com"
+    }],
     "license": "BSD-3-Clause",
+    "support": {
+        "issues": "http://github.com/LoveDuckie/silverstripe-social-meta-tags/issues"
+    },
     "require": {
         "silverstripe/framework": "^4.0",
         "silverstripe/admin": "^1.0"
@@ -17,8 +21,8 @@
     },
     "autoload": {
         "psr-4": {
-            "SilverStripeModule\\Skeleton\\": "src/",
-            "SilverStripeModule\\Skeleton\\Tests\\": "tests/"
+            "LoveDuckie\\SilverStripe\\Skeleton\\": "src/",
+            "LoveDuckie\\SilverStripe\\Skeleton\\Tests\\": "tests/"
         }
     },
     "extra": {
