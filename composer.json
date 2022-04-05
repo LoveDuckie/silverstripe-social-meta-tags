@@ -21,8 +21,8 @@
     },
     "autoload": {
         "psr-4": {
-            "LoveDuckie\\SilverStripe\\Skeleton\\": "src/",
-            "LoveDuckie\\SilverStripe\\Skeleton\\Tests\\": "tests/"
+            "LoveDuckie\\SilverStripe\\SocialMetaTags\\": "src/",
+            "LoveDuckie\\SilverStripe\\SocialMetaTags\\Tests\\": "tests/"
         }
     },
     "extra": {
