@@ -1,6 +1,6 @@
 {
     "name": "loveduckie/silverstripe-social-meta-tags",
-    "description": "A SilverStripe module for injecting OpenGraph and Twitter meta tags for sharing and social previews.",
+    "description": "A Silverstripe module for injecting OpenGraph and Twitter meta tags for sharing and social previews.",
     "type": "silverstripe-vendormodule",
     "keywords": ["silverstripe", "cms", "silverstripe-4", "social-meta-tags", "social-share"],
     "authors": [
@@ -26,8 +26,8 @@
     },
     "autoload": {
         "psr-4": {
-            "LoveDuckie\\SilverStripe\\SocialMetaTags\\": "src/",
-            "LoveDuckie\\SilverStripe\\SocialMetaTags\\Tests\\": "tests/"
+            "LoveDuckie\\Silverstripe\\SocialMetaTags\\": "src/",
+            "LoveDuckie\\Silverstripe\\SocialMetaTags\\Tests\\": "tests/"
         }
     },
     "extra": {
