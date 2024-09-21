@@ -1,8 +1,16 @@
+<div align="center">
+
 # silverstripe-social-meta-tags
 
-A handy SilverStripe module for conveniently integrating metadata compatible with sharing previews on social media platforms.
+</div>
+
+This [SilverStripe](https://silverstripe.org/) module provides an easy-to-use solution for integrating metadata that ensures compatibility with sharing previews across social media platforms. With this module, you can automatically generate Open Graph, Twitter Card, and other platform-specific metadata tags, allowing you to control how your content appears when shared. It’s ideal for enhancing social media engagement by delivering visually appealing and relevant previews when your website links are posted. This module is fully customizable and simple to integrate, making it a valuable tool for improving your site's visibility on social platforms.
+
+<div align="center">
 
 ![image](https://user-images.githubusercontent.com/692378/160485859-58540384-9ef3-440c-b41f-f3e4ce15663e.png)
+
+</div>
 
 ## Requirements
 
