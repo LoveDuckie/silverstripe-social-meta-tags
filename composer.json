@@ -2,7 +2,7 @@
     "name": "loveduckie/silverstripe-social-meta-tags",
     "description": "A Silverstripe module for injecting OpenGraph and Twitter meta tags for sharing and social previews.",
     "type": "silverstripe-vendormodule",
-    "keywords": ["silverstripe", "cms", "silverstripe-4", "social-meta-tags", "social-share"],
+    "keywords": ["silverstripe", "cms", "silverstripe-4", "social-meta-tags", "social-share", "silverstripe-5"],
     "authors": [
         {
             "name": "Luc Shelton",
