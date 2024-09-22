@@ -4,7 +4,9 @@
 
 </div>
 
-This [SilverStripe](https://silverstripe.org/) module provides an easy-to-use solution for integrating metadata that ensures compatibility with sharing previews across social media platforms. With this module, you can automatically generate Open Graph, Twitter Card, and other platform-specific metadata tags, allowing you to control how your content appears when shared. It’s ideal for enhancing social media engagement by delivering visually appealing and relevant previews when your website links are posted. This module is fully customizable and simple to integrate, making it a valuable tool for improving your site's visibility on social platforms.
+This [SilverStripe](https://silverstripe.org/) module provides an easy-to-use solution for integrating metadata that ensures compatibility with sharing previews across social media platforms. With this module, you can automatically generate [Open Graph](https://ogp.me/), [Twitter Card](https://developer.x.com/en/docs/x-for-websites/cards/overview/abouts-cards), and other platform-specific metadata tags, allowing you to control how your content appears when shared. It’s ideal for enhancing social media engagement by delivering visually appealing and relevant previews when your website links are posted. This module is fully customizable and simple to integrate, making it a valuable tool for improving your site's visibility on social platforms.
+
+---
 
 <div align="center">
 
