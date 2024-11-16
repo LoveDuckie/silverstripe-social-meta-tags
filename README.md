@@ -97,7 +97,3 @@ Contributions are welcome! To contribute:
 3. Submit a pull request (PR) with a clear description of the changes.
 
 Please discuss significant changes with the maintainers before submitting a PR.
-
----
-
-This `README` now has a polished structure, improved readability, and a professional tone, ensuring it is engaging for developers while providing all necessary details.
