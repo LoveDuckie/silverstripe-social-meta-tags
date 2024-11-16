@@ -2,6 +2,7 @@
 
 namespace LoveDuckie\SilverStripe\SocialMetaTags\Extensions;
 
+use SilverStripe\i18n\i18n;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\Control\Director;
@@ -23,20 +24,24 @@ class SocialMediaTagsExtension extends DataExtension
         $config = $this->config();
 
         // Check page type overrides
-        if ($pageType && isset($config['page_types'][$pageType][$property])) {
-            $typeConfig = $config['page_types'][$pageType][$property];
-            if ($platform && isset($typeConfig[$platform])) {
-                return $typeConfig[$platform];
+        if ($pageType) {
+            $pageTypeConfig = $config->get('page_types')[$pageType] ?? null;
+            if ($pageTypeConfig && isset($pageTypeConfig[$property])) {
+                $typeConfig = $pageTypeConfig[$property];
+                if ($platform && isset($typeConfig[$platform])) {
+                    return $typeConfig[$platform];
+                }
+                return $typeConfig['default'] ?? null;
             }
-            return $typeConfig['default'] ?? null;
         }
 
         // Default configuration
-        if (isset($config[$property])) {
-            if ($platform && isset($config[$property][$platform])) {
-                return $config[$property][$platform];
+        $propertyConfig = $config->get($property) ?? null;
+        if ($propertyConfig) {
+            if ($platform && isset($propertyConfig[$platform])) {
+                return $propertyConfig[$platform];
             }
-            return $config[$property]['default'] ?? $config[$property];
+            return $propertyConfig['default'] ?? $propertyConfig;
         }
 
         return null;
@@ -58,7 +63,8 @@ class SocialMediaTagsExtension extends DataExtension
     private function buildPageTitle(string $title = '', bool $includeTagline = true): string
     {
         $siteConfig = SiteConfig::current_site_config();
-        $parts = [$siteConfig->getWebsiteTitle()];
+//        $parts = [$siteConfig->getWebsiteTitle()];
+        $parts = [$siteConfig->Title];
 
         if ($includeTagline && $siteConfig->Tagline) {
             $parts[] = $siteConfig->Tagline;
@@ -165,10 +171,14 @@ class SocialMediaTagsExtension extends DataExtension
             'title' => $title,
             'description' => $description,
             'image' => $image['image'] ?? '',
-            'site_name' => $siteConfig->getWebsiteTitle(),
+            'locale' => !$this->getPageConfig('locale', null, null) ? i18n::get_locale() : 'en_GB',
+//            'site_name' => $siteConfig->getWebsiteTitle(),
+            'site_name' => $siteConfig->Title,
             'type' => $this->getPageConfig('opengraph', null, 'type') ?? 'website',
             'url' => Director::absoluteURL($owner->Link()),
         ];
+
+        $this->getOwner()->extend('updateSocialMetaTagsProperties', $properties);
 
         // Render meta tags
         $this->renderOpenGraphTags($tags, $properties);

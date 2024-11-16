@@ -8,7 +8,7 @@ LoveDuckie\SilverStripe\SocialMetaTags\Extensions\SocialMediaTagsExtension:
     description:
       default: "Content"
     image:
-      default: "ImpressionImage"
+      default:
     image_width: 1200
     image_height: 627
     description_limit: 300
@@ -39,46 +39,5 @@ LoveDuckie\SilverStripe\SocialMetaTags\Extensions\SocialMediaTagsExtension:
         image_height: 800
         image_width: 418
   page_types:
-    Portfolio\Models\HomePage:
-      description:
-        default: "Content"
-    SilverStripe\Blog\Model\BlogPost:
-      title:
-        default: "Title"
-      description:
-        default: "Content"
-      image:
-        default: "FeaturedImage"
-        facebook: "FeaturedImageFacebook"
-        twitter: "FeaturedImageTwitter"
-        linkedin: "FeaturedImageLinkedIn"
-    Portfolio\Models\CareerJobCompanyPage:
-      title:
-        default: "Title"
-      description:
-        default: "Content"
-      image:
-        default: "CompanyLogo"
-    Portfolio\Models\CareerJobPage:
-      title:
-        default: "Title"
-      image:
-        default: "CompanyLogo"
-    Portfolio\Models\EventPage:
-      image:
-        default: "Impression"
-    Portfolio\Models\ProjectPage:
-      twitter:
-        card: summary_large_image
-      title:
-        default: "Title"
-      description:
-        default: "Content"
-      image:
-        default: "Impression"
-        facebook: "ImpressionFacebook"
-        twitter: "ImpressionTwitter"
-        linkedin: "ImpressionLinkedIn"
   types:
     SilverStripe\Blog\Model\BlogPost: "article"
-    Portfolio\Models\AboutPage: "profile"
