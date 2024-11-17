@@ -13,7 +13,7 @@
     ],
     "support": {
         "email": "lucshelton@gmail.com",
-        "issues": "http://github.com/LoveDuckie/silverstripe-social-meta-tags/issues"
+        "issues": "https://github.com/LoveDuckie/silverstripe-social-meta-tags/issues"
     },
     "license": "BSD-3-Clause",
     "require": {
