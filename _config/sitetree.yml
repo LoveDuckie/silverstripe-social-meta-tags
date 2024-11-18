@@ -1,6 +1,6 @@
 ---
 Name: loveduckie-silverstripe-social-media-tags-extensions
 ---
-SilverStripe\CMS\Model\SiteTree:
-  extensions:
-    - LoveDuckie\SilverStripe\SocialMetaTags\Extensions\SocialMediaTagsExtension
+#SilverStripe\CMS\Model\SiteTree:
+#  extensions:
+#    - LoveDuckie\SilverStripe\SocialMetaTags\Extensions\SocialMediaTagsExtension
