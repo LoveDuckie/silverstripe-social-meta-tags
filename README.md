@@ -1,6 +1,6 @@
 <div align="center">
 
-# SilverStripe Social Meta Tags
+# silverstripe-social-metadata-tags
 
 **Easily enhance your website's social media presence with automated metadata generation.**
 
@@ -9,6 +9,19 @@
 This [SilverStripe](https://silverstripe.org/) module provides a straightforward solution for integrating metadata to ensure seamless sharing previews across social media platforms. The module automatically generates [Open Graph](https://ogp.me/), [Twitter Card](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards), and other platform-specific metadata tags, ensuring that your website content appears polished and engaging when shared.
 
 Ideal for boosting social media engagement, this module allows you to control the appearance of shared links while being fully customizable and simple to integrate. Improve your website’s visibility and make your links stand out across all major platforms.
+
+---
+
+## Support
+
+Find below some of the features that this module supports.
+
+- **:white_check_mark: Configurable by page type**
+  - Inject meta data dependent on page types.
+- **:white_check_mark: Support for OpenGraph protocol**
+  - Provides complete support for the [OpenGraph protocol](https://ogp.me/).
+- **:white_check_mark: Support for Twitter meta data**
+  - Provides complete support for all [Twitter social share tags](https://developer.x.com/en/docs/x-for-websites/cards/guides/getting-started).
 
 ---
 

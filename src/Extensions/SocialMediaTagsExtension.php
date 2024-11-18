@@ -110,7 +110,9 @@ class SocialMediaTagsExtension extends DataExtension
         return [
             'image' => $resizedImage->AbsoluteLink(),
             'image_width' => $width,
+            'image:width' => $width,
             'image_height' => $height,
+            'image:height' => $height,
             'image_type' => $resizedImage->MimeType,
             'image_alt' => htmlspecialchars($image->AltDescription ?? ''),
         ];
@@ -122,9 +124,22 @@ class SocialMediaTagsExtension extends DataExtension
     public function renderOpenGraphTags(string &$tags, array $properties): void
     {
         $tags .= "\n<!-- OpenGraph Meta Tags -->\n";
-        foreach (['type', 'site_name', 'title', 'image', 'description', 'url'] as $key) {
+        foreach (['type', 'site_name', 'locale', 'title', 'image', 'description', 'url', 'image:width', 'image:height', 'image:alt'] as $key) {
             if (isset($properties[$key])) {
                 $tags .= $this->constructMetaTag('property', "og:{$key}", 'content', $properties[$key]);
+            }
+        }
+    }
+
+    /**
+     * Renders Profile meta tags.
+     */
+    public function renderProfileTags(string &$tags, array $properties): void
+    {
+        $tags .= "\n<!-- Profile Meta Tags -->\n";
+        foreach (['first_name', 'last_name'] as $key) {
+            if (isset($properties[$key])) {
+                $tags .= $this->constructMetaTag('name', "profile:{$key}", 'content', $properties[$key]);
             }
         }
     }
@@ -171,7 +186,9 @@ class SocialMediaTagsExtension extends DataExtension
             'title' => $title,
             'description' => $description,
             'image' => $image['image'] ?? '',
-            'locale' => !$this->getPageConfig('locale', null, null) ? i18n::get_locale() : 'en_GB',
+            'locale' => $this->getPageConfig('locale', null, null) ?? 'en_GB',
+            'profile:first_name' => $this->getPageConfig('first_name', null, null),
+            'profile:last_name' => $this->getPageConfig('last_name', null, null),
 //            'site_name' => $siteConfig->getWebsiteTitle(),
             'site_name' => $siteConfig->Title,
             'type' => $this->getPageConfig('opengraph', null, 'type') ?? 'website',
@@ -181,6 +198,7 @@ class SocialMediaTagsExtension extends DataExtension
         $this->getOwner()->extend('updateSocialMetaTagsProperties', $properties);
 
         // Render meta tags
+        $this->renderProfileTags($tags, $properties);
         $this->renderOpenGraphTags($tags, $properties);
         $this->renderTwitterTags($tags, $properties);
     }
