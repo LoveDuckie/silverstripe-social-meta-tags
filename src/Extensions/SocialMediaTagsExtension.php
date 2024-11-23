@@ -101,6 +101,36 @@ class SocialMediaTagsExtension extends DataExtension
     }
 
     /**
+     * Generate a list of images to display using OpenGraph meta tags
+     * @return array
+     */
+    private function generatePageImages(): array
+    {
+        $owner = $this->owner;
+        $pageType = get_class($owner);
+
+        $images = [];
+        $imageFields = $this->getPageConfig('images', $pageType);
+        $platform = SocialPlatforms::identifyPlatform();
+        $imageWidth = $this->getPageConfig('image_width', null, $platform) ?? 1200;
+        $imageHeight = $this->getPageConfig('image_height', null, $platform) ?? 627;
+
+        if (is_array($imageFields)) {
+            foreach ($imageFields as $imageField) {
+                if ($owner->hasField($imageField)) {
+                    foreach($owner->$imageField() as $image) {
+                        if ($image && $image instanceof Image && $image->exists()){
+                            $images[] = $this->generateImageProperties($image, $imageWidth, $imageHeight);
+                        }
+                    }
+                }
+            }
+        }
+
+        return $images;
+    }
+
+    /**
      * Generates properties for an image, including dimensions and type.
      */
     private function generateImageProperties(Image $image, int $width, int $height): array
@@ -132,20 +162,26 @@ class SocialMediaTagsExtension extends DataExtension
     }
 
     /**
-     * Renders Profile meta tags.
+     * Renders general meta tags
+     * @param string $tags
+     * @param array $properties
+     * @return void
      */
-    public function renderProfileTags(string &$tags, array $properties): void
+    public function renderMetaTags(string &$tags, array $properties): void
     {
-        $tags .= "\n<!-- Profile Meta Tags -->\n";
-        foreach (['first_name', 'last_name'] as $key) {
+        $tags .= "\n<!-- General Meta Tags -->\n";
+        foreach (['first_name', 'last_name', 'robots'] as $key) {
             if (isset($properties[$key])) {
-                $tags .= $this->constructMetaTag('name', "profile:{$key}", 'content', $properties[$key]);
+                $tags .= $this->constructMetaTag('name', "{$key}", 'content', $properties[$key]);
             }
         }
     }
 
     /**
-     * Renders Twitter meta tags.
+     * Renders twitter tags
+     * @param string $tags
+     * @param array $properties
+     * @return void
      */
     public function renderTwitterTags(string &$tags, array $properties): void
     {
@@ -161,8 +197,14 @@ class SocialMediaTagsExtension extends DataExtension
         }
     }
 
+
     /**
-     * Constructs a single meta tag.
+     * Constructs the string for the meta tag
+     * @param string $attrName
+     * @param string $name
+     * @param string $attrValue
+     * @param string $value
+     * @return string
      */
     private function constructMetaTag(string $attrName, string $name, string $attrValue, string $value): string
     {
@@ -181,15 +223,15 @@ class SocialMediaTagsExtension extends DataExtension
         $title = $this->buildPageTitle($owner->Title ?? '', true);
         $description = $this->truncateDescription(strip_tags($siteConfig->Tagline ?? ''), $this->getPageConfig('description_limit') ?? 300);
         $image = $this->generatePageImage();
+        $images = $this->generatePageImages();
 
         $properties = [
             'title' => $title,
             'description' => $description,
             'image' => $image['image'] ?? '',
+            'images' => $images,
             'locale' => $this->getPageConfig('locale', null, null) ?? 'en_GB',
-            'profile:first_name' => $this->getPageConfig('first_name', null, null),
-            'profile:last_name' => $this->getPageConfig('last_name', null, null),
-//            'site_name' => $siteConfig->getWebsiteTitle(),
+            'robots' => $this->getPageConfig('robots', null, null) ?? 'index,follow',
             'site_name' => $siteConfig->Title,
             'type' => $this->getPageConfig('opengraph', null, 'type') ?? 'website',
             'url' => Director::absoluteURL($owner->Link()),
@@ -198,7 +240,9 @@ class SocialMediaTagsExtension extends DataExtension
         $this->getOwner()->extend('updateSocialMetaTagsProperties', $properties);
 
         // Render meta tags
-        $this->renderProfileTags($tags, $properties);
+//        $this->renderProfileTags($tags, $properties);
+
+        $this->renderMetaTags($tags, $properties);
         $this->renderOpenGraphTags($tags, $properties);
         $this->renderTwitterTags($tags, $properties);
     }
